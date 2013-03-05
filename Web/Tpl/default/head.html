@@ -1,0 +1,19 @@
+<div class="top">
+    <div class="top_left"><!--可以放LOG--></div>
+    <div class="top_right">
+      <div class="top_right_1"><a href="">设为首页</a>　|　<a href="">加入收藏</a></div>
+      <div class="top_right_2"><img src="__TMPL__/images/img_1.gif" /></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="banner">{:Ad(28);}</div>
+<div class="menu">
+    <div class="menusel" style="width:95px;">
+      <h2><a href="{$config.siteurl}">首页</a></h2>
+    </div>
+	<volist name="menu" id="vo" offset="0" length='7' key='k'> 
+    <div id="menu{$k}" class="menusel">
+      <h2><a href="<eq name="vo.islink" value="0">{$vo.typeid|url=lists,###}<else/>{$vo.url}</eq>"  target="<eq name="vo.target" value="1">_self<else/>_blank</eq>" id="mynav{$i}" class="nav_off"><span>{$vo.typename}</span></a></h2>
+    </div>
+	</volist>
+	  </div>  

@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$config.sitetitle}|{$config.sitetitle2}</title>
+<link href="__TMPL__/css/css.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/dtree.css" type="text/css" rel="stylesheet">
+<script src="__PUBLIC__/js/jquery.js"></script>
+<script>var mypath = '__PUBLIC__/js/';</script>
+<script type="text/javascript" src="__PUBLIC__/js/dtree.js"></script>
+</head>
+<body>
+<div class="zhong">
+<include file="$head"/>
+  <div class="main">
+    <div class="left">
+      <div class="box_1">
+        <div class="left_news">
+         <script type="text/javascript">
+d = new dTree('d');
+d.add(0,-1,'栏目导航');
+<volist name="tree_list" id="vo">
+d.add({$vo.typeid},{$vo.fid},'{$vo.typename}','{$vo.typeid|url=lists,###}','','_self');
+</volist>
+document.write(d);
+d.openAll();
+</script>
+        </div>
+      </div>
+      <div class="box_1">
+        <div class="left_title">热点排行</div>
+        <div class="left_nr">
+          <ul>
+           {$config.artlisthot|ShowArt=0,###,0,0,$type['typeid']}
+          </ul>
+        </div>
+      </div>
+      <div class="box_1" style="margin:0px;">
+        <div class="left_title">推荐系列</div>
+        <div class="left_nr">
+          <ul>
+           {$config.artlistrec|ShowArt=0,###,0,2,$type['typeid']}</a>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="right_title"><font style=" font-size:18px; font-weight:bold; color:#0473a9">{$type.typename}</font>
+        <div>{$nav}&nbsp;&gt;&nbsp;列表</div>
+      </div>
+      <div class="liebiao">
+	  <volist name="list" id="vo">
+	  <table width="100%" border="0" align="center" cellpadding="7" cellspacing="1" bgcolor="#CCCCCC" style="margin:15px auto; ">
+              <tbody><tr style="height:25px; line-height:25px; ">
+                <td bgcolor="#F7F7F7" width="16%"><div align="center">招聘职位:</div></td>
+                <td bgcolor="#FFFFFF" width="29%">&nbsp;<a href="{$vo.aid|url=articles,###}"><notempty name="vo.titlecolor"><font color="{$vo.titlecolor}"></notempty>{$vo.title|msubstr=###,0,38,'utf-8'}<notempty name="vo.titlecolor"></font></notempty></a></td>
+                <td bgcolor="#F7F7F7" width="8%"><div align="center">描述:</div></td>
+                <td bgcolor="#FFFFFF" width="21%">&nbsp;{$vo.description}</td>
+				  <td bgcolor="#F7F7F7" width="10%"><div align="center">发布日期:</div></td>
+                <td bgcolor="#FFFFFF"  width="17%">&nbsp;{$vo.addtime|strtotime|date='Y-m-d',###}</td>
+                </tr>
+              <tr>
+                <td bgcolor="#F7F7F7"><div align="center">职位要求：</div></td>
+                <td colspan="5" bgcolor="#FFFFFF" style="padding-left:5px; ">
+				&nbsp;{$vo.content}</td>
+                </tr>
+            </tbody></table>
+		</volist>
+       
+		
+          
+          <div class="clear"></div>
+       
+      </div>
+      <div class="fanye">
+        {$page}
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div class="huoban">
+      <div class="huoban_title"><img src="__TMPL__/images/title_2.gif" /></div>
+      <div class="huoban_nr">
+        <ul>
+		<volist name='mylink' id='vo'>
+          <li><a href='{$vo.url}' target="_blank"><img src="{$vo.logo}" class="link_pic" /></a></li>
+		  </volist>
+        </ul>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+   <include file="$footer"/>
+</div>
+
+</body>
+</html>

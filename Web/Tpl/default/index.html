@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$config.sitetitle}|{$config.sitetitle2}</title>
+<link href="__TMPL__/css/css.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/dtree.css" type="text/css" rel="stylesheet">
+<script src="__PUBLIC__/js/jquery.js"></script>
+<script>var mypath = '__PUBLIC__/js/';</script>
+<script type="text/javascript" src="__PUBLIC__/js/dtree.js"></script>
+</head>
+<body>
+<div class="zhong">
+  <include file="$head"/>
+  <div class="main">
+    <div class="left">
+	  <div class="box_1" style="margin:0px;">
+        <div class="left_title">产品分类</div>
+        <div class="left_nr">
+<script type="text/javascript">
+d = new dTree('d');
+d.add(22,-1,'<font color=blue><strong>产品分类</strong></font>');
+<volist name="product_dir" id="vo">
+d.add({$vo.typeid},{$vo.fid},'{$vo.typename}','{$vo.typeid|url=lists,###}','','_self');
+</volist>
+document.write(d);
+d.openAll();   
+</script>
+       </div>
+      </div>
+	  <div class="box_1">
+        <div class="left_title">本站公告</div>
+        <div class="left_nr">
+          <ul>
+		  <volist name='list_gao' id="sub">
+            <li><a href="{$sub.aid|url=articles,###}"><notempty name="sub.titlecolor"><font color="{$sub.titlecolor}"></notempty>{$sub.title}<notempty name="sub.titlecolor"></font></notempty></a></li>
+		  </volist>
+           
+          </ul>
+        </div>
+      </div>
+      <div class="box_1">
+        <div class="left_title">联系我们</div>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="40" height="30" valign="middle" align="center">地址：</td>
+            <td valign="middle">
+              成都高新技术开发区
+            </td>
+          </tr>
+          <tr>
+            <td height="30" valign="middle" align="center">手机：</td>
+            <td valign="middle">
+              3438493226
+            </td>
+          </tr>
+          <tr>
+            <td height="30" valign="middle" align="center">电话：</td>
+            <td valign="middle">
+            0579-87050555
+            </td>
+          </tr>
+        </table>
+      </div>    
+      
+    </div>
+    <div class="right">
+      <div class="right_top_img">{:Ad(29);}</div>
+      <img src="__TMPL__/images/img_8.gif" style="float:left"/>
+      <div class="news">
+        <div class="news_title"><span><img src="__TMPL__/images/title_1.gif" /></span><a href="http://www.865171.cn"><img src="__TMPL__/images/more.gif" /></a></div>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+           <volist name='list_new' id='vo'>
+		   <tr>
+            <td width="75%" height="18"><a href="{$vo.aid|url=articles,###}"><notempty name="vo.titlecolor"><font color="{$vo.titlecolor}"></notempty>{$vo.title}<notempty name="vo.titlecolor"></font></notempty></a></td>
+       
+            <td width="25%" align="center">{$vo.addtime}</td>
+          </tr>
+		  </volist>
+        </table>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div class="huoban">
+      <div class="huoban_title"><img src="__TMPL__/images/title_2.gif" /></div>
+      <div class="huoban_nr">
+        <ul>
+		<volist name='mylink' id='vo'>
+          <li><a href='{$vo.url}' target="_blank"><img src="{$vo.logo}" class="link_pic" /></a></li>
+		  </volist>
+        </ul>
+        <div class="clear"></div>
+      </div>
+    </div>
+	<div class="clear"></div>
+  </div>
+  <include file="$footer"/> 
+</div>
+</body>
+</html>

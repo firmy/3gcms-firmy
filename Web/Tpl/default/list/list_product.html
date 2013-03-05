@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$config.sitetitle}|{$config.sitetitle2}</title>
+<link href="__TMPL__/css/css.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/dtree.css" type="text/css" rel="stylesheet">
+<script src="__PUBLIC__/js/jquery.js"></script>
+<script>var mypath = '__PUBLIC__/js/';</script>
+<script type="text/javascript" src="__PUBLIC__/js/dtree.js"></script>
+<script language="JavaScript"> 
+<!-- 
+var flag=false; 
+function DrawImage(ImgD){ 
+ var image=new Image(); 
+ image.src=ImgD.src; 
+ if(image.width>0 && image.height>0){ 
+  flag=true; 
+  if(image.width/image.height>= 130/125){ 
+   if(image.width>130){
+    ImgD.width=125; 
+    ImgD.height=(image.height*125)/image.width; 
+   }else{ 
+    ImgD.width=image.width;
+    ImgD.height=image.height; 
+   } 
+   ImgD.alt="点击查看详细信息..."; 
+  } 
+  else{ 
+   if(image.height>125){
+    ImgD.height=125; 
+    ImgD.width=(image.width*125)/image.height; 
+   }else{ 
+    ImgD.width=image.width;
+    ImgD.height=image.height; 
+   } 
+   ImgD.alt="点击查看详细信息..."; 
+  } 
+ }
+}
+
+
+//--> 
+</script>
+</head>
+<body>
+<div class="zhong">
+<include file="$head"/>
+  <div class="main">
+    <div class="left">
+      <div class="box_1">
+        <div class="left_news">
+         <script type="text/javascript">
+d = new dTree('d');
+d.add(0,-1,'栏目导航');
+<volist name="tree_list" id="vo">
+d.add({$vo.typeid},{$vo.fid},'{$vo.typename}','{$vo.typeid|url=lists,###}','','_self');
+</volist>
+document.write(d);
+d.openAll();
+</script>
+        </div>
+      </div>
+      <div class="box_1">
+        <div class="left_title">热点排行</div>
+        <div class="left_nr">
+          <ul>
+           {$config.artlisthot|ShowArt=0,###,0,0,$type['typeid']}
+          </ul>
+        </div>
+      </div>
+      <div class="box_1" style="margin:0px;">
+        <div class="left_title">推荐系列</div>
+        <div class="left_nr">
+          <ul>
+           {$config.artlistrec|ShowArt=0,###,0,2,$type['typeid']}</a>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="right_title"><font style=" font-size:18px; font-weight:bold; color:#0473a9">{$type.typename}</font>
+        <div>{$nav}&nbsp;&gt;&nbsp;列表</div>
+      </div>
+      <div class="liebiao">
+       <table width="98%" border="0" cellspacing="0" cellpadding="0" style="margin-top:10px;"><tbody>
+	   
+<tr><volist name="list" id="vo" mod="5">
+<td height="130">
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                  <tr>
+                    <td width="130" height="130" align="center" style="BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; BORDER-BOTTOM: #cccccc 1px solid; TEXT-DECORATION: underline"><a href="{$vo.aid|url=articles,###}" ><img src="{$vo.imgurl}" width="125" height="92" border="0" onload="javascript:DrawImage(this);" alt="点击查看详细信息..."></a></td>
+                  </tr>
+				  
+                  <tr>
+                    <td height="25" align="center" style="height:36px"><a href="{$vo.aid|url=articles,###}" ><font size="2"><notempty name="vo.titlecolor"><font color="{$vo.titlecolor}"></notempty>{$vo.title|msubstr=###,0,10,'utf-8'}<notempty name="vo.titlecolor"></font></notempty></font></a></td>
+                  </tr>
+				  
+                </tbody>
+  </table>
+</td>
+<eq name="mod" value="4"></tr><tr></eq></volist>
+</tbody></table>
+          <div class="clear"></div>
+        </ul>
+      </div>
+      <div class="fanye">
+        {$page}
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div class="huoban">
+      <div class="huoban_title"><img src="__TMPL__/images/title_2.gif" /></div>
+      <div class="huoban_nr">
+        <ul>
+		<volist name='mylink' id='vo'>
+          <li><a href='{$vo.url}' target="_blank"><img src="{$vo.logo}" class="link_pic" /></a></li>
+		  </volist>
+        </ul>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+   <include file="$footer"/>
+</div>
+
+</body>
+</html>

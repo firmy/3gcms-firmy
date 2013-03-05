@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$config.sitetitle}|{$config.sitetitle2}</title>
+<link href="__TMPL__/css/css.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/dtree.css" type="text/css" rel="stylesheet">
+<script src="__PUBLIC__/js/jquery.js"></script>
+<script>var mypath = '__PUBLIC__/js/';</script>
+<script type="text/javascript" src="__PUBLIC__/js/dtree.js"></script>
+</head>
+<body>
+<div class="zhong">
+<include file="$head"/>
+  <div class="main">
+    <div class="left">
+      <div class="box_1">
+        <div class="left_news">
+         <script type="text/javascript">
+d = new dTree('d');
+d.add(0,-1,'栏目导航');
+<volist name="tree_list" id="vo">
+d.add({$vo.typeid},{$vo.fid},'{$vo.typename}','{$vo.typeid|url=lists,###}','','_self');
+</volist>
+document.write(d);
+d.openAll();
+</script>
+        </div>
+      </div>
+      <div class="box_1">
+        <div class="left_title">热点排行</div>
+        <div class="left_nr">
+          <ul>
+           {$config.artlisthot|ShowArt=0,###,0,0,$type['typeid']}
+          </ul>
+        </div>
+      </div>
+      <div class="box_1" style="margin:0px;">
+        <div class="left_title">推荐系列</div>
+        <div class="left_nr">
+          <ul>
+           {$config.artlistrec|ShowArt=0,###,0,2,$type['typeid']}</a>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="right_title"><b><notempty name="article.titlecolor"><font color="{$article.titlecolor}"></notempty>{$article.title}<present name="nowpage">({$nowpage})</present><notempty name="article.titlecolor"></font></notempty></b>
+        <div>{$nav}</div>
+      </div>
+      <div class="xiangqing">
+        <div class="laiyuan"><eq name="config.isauthor" value="1">作者:<span class="blue">{$article.author}</span></eq> 时间:<span class="blue">{$article.addtime|strtotime|date='Y-m-d'}</span><eq name="config.ishits" value="1">&nbsp;&nbsp;浏览:<span class="blue">{$article.hits}</span></eq><eq name="config.iscopyfrom" value="1">&nbsp;&nbsp;来源:<span class="blue">{$article.copyfrom}</span></eq></div>
+        {$article.content}
+		<div style="margin:20px auto;">{$updown}</div> </div>
+    </div>
+    <div class="clear"></div>
+    <div class="huoban">
+      <div class="huoban_title"><img src="__TMPL__/images/title_2.gif" /></div>
+      <div class="huoban_nr">
+        <ul>
+		<volist name='mylink' id='vo'>
+          <li><a href='{$vo.url}' target="_blank"><img src="{$vo.logo}" class="link_pic" /></a></li>
+		  </volist>
+        </ul>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+   <include file="$footer"/>
+</div>
+</body>
+</html>
